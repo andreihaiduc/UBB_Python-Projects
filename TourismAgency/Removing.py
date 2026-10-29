@@ -1,4 +1,5 @@
 from DateCheckers import duration
+from Offers import get_destination, get_price
 
 def remove_from_destination(offers,destination):
     """
@@ -8,12 +9,13 @@ def remove_from_destination(offers,destination):
         :return: the number of removed offers (int)
         """
     count = 0
-    for i in range(len(offers)-1 ,-1,-1):
-        if offers[i][0] == destination:
+    count = 0
+    for i in range(len(offers) - 1, -1, -1):
+        if get_destination(offers[i]) == destination:
             offers.pop(i)
-            count=count+1
-
+            count = count + 1
     return count
+
 def remove_less_days(offers,days):
     """
         Removes all offers that have a shorter duration than the given number of days.
@@ -21,13 +23,14 @@ def remove_less_days(offers,days):
         :param days: the number of days (int)
         :return: the number of removed offers (int)
     """
-
     count = 0
-    for i in range(len(offers)-1,-1,-1):
+    for i in range(len(offers) - 1, -1, -1):
         if duration(offers[i]) < days:
             offers.pop(i)
-            count=count+1
+            count = count + 1
     return count
+
+
 
 def remove_greater_price(offers,price):
     """
@@ -37,9 +40,8 @@ def remove_greater_price(offers,price):
         :return: the number of removed offers (int)
     """
     count = 0
-    for i in range(len(offers)-1,-1,-1):
-        if offers[i][3] > price:
+    for i in range(len(offers) - 1, -1, -1):
+        if get_price(offers[i]) > price:
             offers.pop(i)
-            count=count+1
-
+            count = count + 1
     return count
