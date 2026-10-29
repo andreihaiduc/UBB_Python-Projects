@@ -1,3 +1,4 @@
+from Offers import get_start, get_end
 def is_valid_date(day, month, year):
     """
        Checks if day, month and year form a valid date.
@@ -66,10 +67,14 @@ def make_date(day, month, year):
 def duration(offer):
     """
     Returns the number of days between the start and end date of an offer.
+    :param offer: the offer
+    :return: the number of days between the start and end date of an offer
+    :return: type int
     """
     before = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334]
-    d1, m1, y1 = offer[1].split("/")
-    d2, m2, y2 = offer[2].split("/")
+    d1, m1, y1 = get_start(offer).split("/")
+    d2, m2, y2 = get_end(offer).split("/")
     start = int(y1) * 365 + before[int(m1) - 1] + int(d1)
     end = int(y2) * 365 + before[int(m2) - 1] + int(d2)
     return end - start
+
