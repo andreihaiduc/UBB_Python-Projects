@@ -1,4 +1,5 @@
 from DateCheckers import make_date
+from Offers import create_offer, set_price
 
 def add_offer(offers, destination, day, month, year, day1, month1, year1, price):
     """
@@ -10,9 +11,10 @@ def add_offer(offers, destination, day, month, year, day1, month1, year1, price)
         :param price: the price of the offer (str, converted to float)
         :return: -
     """
-
-    offer = [destination, make_date(day, month, year), make_date(day1, month1, year1), float(price)]
+    offer = create_offer(destination, make_date(day, month, year), make_date(day1, month1, year1), float(price))
     offers.append(offer)
+
+
 
 def modify_price(offers, index, new_price):
     """
@@ -22,5 +24,5 @@ def modify_price(offers, index, new_price):
         :param new_price: the new price of the offer (float)
         :return: -
     """
+    set_price(offers[index], new_price)
 
-    offers[index][3] = new_price
